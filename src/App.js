@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
-import Consumirproductos from './consumir/Consumir_productos';
+import Buscar from './consumir/Buscar';
 
 function App() {
   return (   
-      <div><Consumirproductos/></div>   
+      <div><Buscar/></div>   
   );
 }
 

@@ -3,46 +3,33 @@ import './Consumir_productos.scss';
 
 
 export default class Consumir_productos extends Component {
-    state = {
-        urlApi: 'https://api.mercadolibre.com/sites/MLU/search?q=',
-        productoName: 'iphone',
-        titulo: ''
+    state = {      
+        // productoName: this.props.productoName,
+        titulo: this.props.titulo,
+        imagen: this.props.imagen,
+        precio: this.props.precio
     }
+    // handleEdit = (event) => {
+    //     const eventValue = event.target.value;
+    //     if (eventValue !== null) {
+    //         this.setState({ productoName: event.target.value })
+    //     }
+    // }
 
-    componentDidMount() {
-        this.getConsumir();
-    }
-    componentDidUpdate(prevProps, prevState) {
-        const { productoName: prevProductoName } = prevState;
-        const { productoName } = this.state;
-        if (prevProductoName !== productoName) this.getConsumir();
-    }
-
-    getConsumir = async () => {
-        const { urlApi, productoName } = this.state;
-        const resp = await fetch(urlApi + productoName);
-        const data = await resp.json();
-        this.setState({
-            titulo: data.results[0].title
-        });
-
-    }
-
-    handleEdit = (event) => {
-        const eventValue = event.target.value;
-        if (eventValue !== null) {
-            this.setState({ productoName: event.target.value })
-        }
-    }
-
-
-
-    render() {
+    render() {       
         return (
-            <div>
-                <input type="text" value={this.state.productoName} onChange={this.handleEdit} />
-                <div>{this.state.titulo}</div>
+            <div className="padre">
+                <div>
+                    <div >
+                        {/* <input type="text" value={this.state.productoName} onChange={this.handleEdit} /> */}
+                        <div id="titulo">{this.state.titulo}</div>
+                        <img id="img" className="img" src={this.state.imagen} alt="producto" width="150" height="400" />
+                        <div>El precio del producto es: {this.state.precio}</div>
+                    </div>
+                </div>
+                
             </div>
         )
     }
 }
+
