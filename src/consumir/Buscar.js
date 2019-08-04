@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import './Consumir_productos.scss';
 import Consumirproductos from './Consumir_productos';
 
+
 export default class vista extends Component {
     state = {
         urlApi: 'https://api.mercadolibre.com/sites/MCO/search?q=',
-        productoName: 'iphone',
+        productoName: '',
         titulo: [],
         imagen: [],
         precio: []
@@ -39,19 +40,16 @@ export default class vista extends Component {
     }
 
     handleEdit = (event) => {
-        const eventValue = event.target.value;
         this.setState({
             titulo: [],
             imagen: [],
             precio: []
         });
-        if (eventValue !== null) {
-            this.setState({ productoName: event.target.value })
-            this.render()
-        }      
+        this.setState({ productoName: event.target.value })
+        this.render()
     }
-    mostrarProductos(index){
-        return  <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]}  precio={this.state.precio[index]} imagen={this.state.imagen[index]}></Consumirproductos>
+    mostrarProductos(index) {
+        return <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]} precio={this.state.precio[index]} imagen={this.state.imagen[index]}></Consumirproductos>
     }
 
     render() {
@@ -64,6 +62,7 @@ export default class vista extends Component {
                             {/* <input className="form-control form-text" placeholder="Buscar" onChange={this.Consumirproductos.handleEdit} value={this.Consumirproductos.state.productoName} size="15" type="text" /> */}
                             <span className="input-group-btn">
                                 <button className="btn btn-primary">Buscar</button>
+                                <i className></i>
                             </span>
 
                         </form>
@@ -72,12 +71,10 @@ export default class vista extends Component {
 
                 </div>
                 <div>
-                    {this.state.titulo.map((producto,index) =>(
+                    {this.state.titulo.map((producto, index) => (
                         this.mostrarProductos(index)
                     ))}
                 </div>
-                               {/* <Consumirproductos index="1" productoName={this.state.productoName}></Consumirproductos> */}
-
                 )
             </div>
 
