@@ -3,8 +3,11 @@ import './App.css';
 import Buscar from './consumir/Buscar';
 
 function App() {
-  return (   
-      <div><Buscar/></div>   
+  return (
+    <body className="padre">
+      <div><Buscar /></div>
+
+    </body>
   );
 }
 

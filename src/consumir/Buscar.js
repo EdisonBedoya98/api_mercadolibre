@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './Consumir_productos.scss';
 import Consumirproductos from './Consumir_productos';
+import Table from 'react-bootstrap/Table'
+
+
+
 
 
 export default class vista extends Component {
@@ -49,33 +53,57 @@ export default class vista extends Component {
         this.render()
     }
     mostrarProductos(index) {
-        return <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]} precio={this.state.precio[index]} imagen={this.state.imagen[index]}></Consumirproductos>
+        if (((index + 1) % 5) !== 0) {
+            return (
+                <td key={index}>
+                    <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]} precio={this.state.precio[index]} imagen={this.state.imagen[index]}></Consumirproductos>
+
+                </td>
+
+            )
+
+        } else {
+            return (
+                <tr>
+                </tr>
+
+
+            )
+
+        }
+
+
     }
+
 
     render() {
         return (
-            <div>
-                <div className="demo">
+
+            <div >
+
+                <div className="demo" >
+                    <form className="form-search">
+                        <input type="text" placeholder="Buscar" value={this.state.palabraClave} onChange={this.handleEdit} size="15" />
+                      
+                        <span className="input-group-btn">
+                            <button className="btn btn-primary">Buscar</button>
+                            <i className></i>
+                        </span>
+                    </form>
+                </div>
+                <div >
                     <div>
-                        <form className="form-search">
-                            <input type="text" className="form-control form-text" placeholder="Buscar" value={this.state.palabraClave} onChange={this.handleEdit} size="15" />
-                            {/* <input className="form-control form-text" placeholder="Buscar" onChange={this.Consumirproductos.handleEdit} value={this.Consumirproductos.state.productoName} size="15" type="text" /> */}
-                            <span className="input-group-btn">
-                                <button className="btn btn-primary">Buscar</button>
-                                <i className></i>
-                            </span>
-
-                        </form>
-
+                        <Table responsive="sm">
+                            <tbody>
+                                {this.state.titulo.map((producto, index) => (
+                                    this.mostrarProductos(index)
+                                ))}
+                            </tbody>
+                        </Table>
                     </div>
 
+
                 </div>
-                <div>
-                    {this.state.titulo.map((producto, index) => (
-                        this.mostrarProductos(index)
-                    ))}
-                </div>
-                )
             </div>
 
 
