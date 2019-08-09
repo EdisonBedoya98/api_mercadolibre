@@ -10,10 +10,12 @@ import Table from 'react-bootstrap/Table'
 export default class vista extends Component {
     state = {
         urlApi: 'https://api.mercadolibre.com/sites/MCO/search?q=',
+        urlApiSeller: "https://api.mercadolibre.com/users/",
         productoName: '',
         titulo: [],
         imagen: [],
-        precio: []
+        precio: [],
+        sellerName: []
     }
     componentDidMount() {
         this.getConsumir();
@@ -25,15 +27,21 @@ export default class vista extends Component {
     }
 
     getConsumir = async () => {
-        const { urlApi, productoName } = this.state;
+        const { urlApi, productoName,urlApiSeller } = this.state;
         const resp = await fetch(urlApi + productoName);
         const data = await resp.json();
+        let respSeller
+        let dataSeller 
+
         try {
             for (let index = 0; index < data.results.length; index++) {
+                respSeller = await fetch(urlApiSeller +data.results[index].seller.id );
+                dataSeller = await respSeller.json();
                 this.setState({
                     titulo: this.state.titulo.concat(data.results[index].title),
                     imagen: this.state.imagen.concat(data.results[index].thumbnail),
-                    precio: this.state.precio.concat(data.results[index].price)
+                    precio: this.state.precio.concat(data.results[index].price),
+                    sellerName: this.state.precio.concat(dataSeller.nickname)
                 });
 
             }
@@ -47,17 +55,17 @@ export default class vista extends Component {
         this.setState({
             titulo: [],
             imagen: [],
-            precio: []
+            precio: [],
+            sellerName: []
         });
         this.setState({ productoName: event.target.value })
-        this.render()
+        
     }
     mostrarProductos(index) {
         if (((index + 1) % 5) !== 0) {
             return (
                 <td key={index}>
-                    <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]} precio={this.state.precio[index]} imagen={this.state.imagen[index]}></Consumirproductos>
-
+                    <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]} precio={this.state.precio[index]} sellerName={this.state.sellerName[index]} imagen={this.state.imagen[index]}></Consumirproductos>
                 </td>
 
             )
