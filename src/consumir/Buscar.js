@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './Consumir_productos.scss';
 import Consumirproductos from './Consumir_productos';
 import Table from 'react-bootstrap/Table'
+import './consumir_productosCards.scss';
+
 
 export default class vista extends Component {
     state = {
@@ -57,37 +59,42 @@ export default class vista extends Component {
     }
 
     mostrarProductos(index) {
-        if (((index + 1) % 5) !== 0) {
-            return (
-                <td key={index}>
+        
+            return (   
+                <div>          
+                <tr></tr>  
+                <td key={index} >
                     <Consumirproductos key={index} index={index} titulo={this.state.titulo[index]} precio={this.state.precio[index]} sellerName={this.state.sellerName[index]} imagen={this.state.imagen[index]}></Consumirproductos>
                 </td>
+                </div>
             )
-        } else {
-            return (
-                <tr>
-                </tr>
-            )
-        }
+       
+    }
+    addTr(){
+        return <tr></tr>
     }
 
 
     render() {
         return (
-            <div >
+            <div  >
+                <div>
                 <div className="demo" >
+                   
+                  
                     <form className="form-search">
                         <input id="name" type="text" placeholder="Buscar" onChange={this.handleEdit} value={this.state.palabraClave} size="15" />
-                        <div type="button" className="button" onClick={this.actualizarConsumir}>Buscar</div>
+                        <div type="button" className="buy--btn" onClick={this.actualizarConsumir}>Buscar</div>
                     </form>
                 </div>
-                <div >
-                    <div>
-                        <Table responsive="sm">
-                            <tbody>
+                </div>
+                <div className="padre3" >
+                    <div >
+                        <Table responsive="sm" >     
+                            <tbody>                           
                                 {this.state.titulo.map((producto, index) => (
-                                    this.mostrarProductos(index)
-                                ))}
+                                    this.mostrarProductos(index)                                                                                                       
+                                ))}                                
                             </tbody>
                         </Table>
                     </div>

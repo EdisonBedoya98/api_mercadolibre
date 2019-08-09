@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './Consumir_productos.scss';
+import './consumir_productosCards.scss';
+
 
 export default class Consumir_productos extends Component {
     state = {
@@ -12,18 +14,35 @@ export default class Consumir_productos extends Component {
 
     render() {
         return (
-            <div className="padre">
-                <div>
-                    <div >
-                        <p id="titulo">{this.state.titulo}</p>
-                        <img id="img" className="img" src={this.state.imagen} alt="producto" width="150" height="400" />
-                        <p>precio: {this.state.precio}</p>
-                        <p>Vendedor: {this.state.sellerName}</p>
-                        <button class="button button2">Comprar</button>
-                        
+            <div >
+                
+                <n class="product">
+                    <div class="product__photo">
+                        <div class="photo-container">
+                            <div class="photo-main">
+                               
+                                <img src={this.state.imagen} alt="green apple slice" width="250" height="220"/>
+                            </div>
+                         
+                        </div>
                     </div>
-                </div>
+                    <div class="product__info">
+                        <div class="title">
+                            <h5>{this.state.titulo}</h5>
+                            <span>{this.state.sellerName}</span>
+                        </div>
+                        <div class="price">
+                            $ <span>{this.state.precio}</span>
+                        </div>
+                      
+                        
+                        <button class="buy--btn">COMPRAR</button>
+                    </div>
+                </n>
 
+                <footer>
+                    <p></p>
+                </footer>
             </div>
         )
     }
