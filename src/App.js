@@ -5,7 +5,7 @@ import Buscar from './consumir/Buscar';
 function App() {
   return (
     <body className="padre">
-      <div className="left">Edison Bedoya García</div>
+      <div className="left">Edison Bedoya García - "Mercado libre"</div>
       <div><Buscar /></div>
     </body>
   );
