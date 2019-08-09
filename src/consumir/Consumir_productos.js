@@ -15,10 +15,10 @@ export default class Consumir_productos extends Component {
             <div className="padre">
                 <div>
                     <div >
-                        <div id="titulo">{this.state.titulo}</div>
+                        <p id="titulo">{this.state.titulo}</p>
                         <img id="img" className="img" src={this.state.imagen} alt="producto" width="150" height="400" />
-                        <div>precio: {this.state.precio}</div>
-                        <div>Vendedor: {this.state.sellerName}</div>
+                        <p>precio: {this.state.precio}</p>
+                        <p>Vendedor: {this.state.sellerName}</p>
                         <button class="button button2">Comprar</button>
                         
                     </div>
